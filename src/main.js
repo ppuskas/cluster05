@@ -150,10 +150,7 @@ function onMouseDown(event) {
         selectedPlane.state = 'videoLoaded';
         break;
       case 'videoLoaded':
-        // Play the video
-        selectedPlane.videoElement.muted = false;
-        selectedPlane.material.map.image.play();
-        selectedPlane.state = 'videoPlaying';
+        // The video will start playing after the animation
         break;
       case 'videoPlaying':
         // Toggle pause/play
@@ -180,6 +177,14 @@ function onMouseDown(event) {
     new TWEEN.Tween(selectedPlane.position)
       .to({ x: 0, y: 0, z: 0 }, 1000)
       .easing(TWEEN.Easing.Exponential.InOut)
+      .onComplete(function() {
+        if (selectedPlane.state === 'videoLoaded') {
+          // Start playing the video after the animation
+          selectedPlane.videoElement.muted = false;
+          selectedPlane.material.map.image.play();
+          selectedPlane.state = 'videoPlaying';
+        }
+      })
       .start();
 
     // Animate the clicked plane scaling up
