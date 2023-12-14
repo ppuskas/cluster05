@@ -6,8 +6,6 @@ import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { OutlinePass } from 'three/examples/jsm/postprocessing/OutlinePass.js';
 
-
-
 var scene = new THREE.Scene();
 var camera = new THREE.OrthographicCamera(window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, 1, 1000);
 camera.position.z = 5;
@@ -21,7 +19,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 
 renderer.setClearColor(0x000000); // Set the background color to black
 
-document.body.appendChild(renderer.domElement);
+document.getElementById('canvas-container').appendChild(renderer.domElement);
 
 window.addEventListener('resize', onWindowResize, false);
 
@@ -35,6 +33,8 @@ outlinePass.edgeColor = new THREE.Color('white');
 outlinePass.edgeStrength = 3; // Adjust to your liking
 composer.addPass(outlinePass);
 
+// Get a reference to the play/pause button
+var playPauseButton = document.getElementById('play-pause-button');
 
 function onWindowResize() {
   // Update camera aspect ratio
@@ -166,14 +166,31 @@ function onMouseDown(event) {
         selectedPlane.state = 'videoLoaded';
         break;
       case 'videoLoaded':
-        // The video will start playing after the animation
+        // Start playing the video after the animation
+        selectedPlane.videoElement.muted = false;
+        selectedPlane.material.map.image.play();
+        selectedPlane.state = 'videoPlaying';
+        playPauseButton.style.backgroundImage = "url('/public/img/pause_button.svg')"; // Change button to pause icon
+        playPauseButton.style.display = 'block'; // Show the button
+        playPauseButton.classList.remove('fade-in'); // Remove the fade-in class        
+        playPauseButton.classList.add('fade-out'); // Add the fade-out class
         break;
       case 'videoPlaying':
         // Toggle pause/play
         if (selectedPlane.material.map.image.paused) {
           selectedPlane.material.map.image.play();
+          playPauseButton.style.backgroundImage = "url('/public/img/play_button.svg')"; // Change button to pause icon
+          playPauseButton.style.display = 'block'; // Show the button
+          playPauseButton.classList.remove('fade-out'); // Remove the fade-out class
+          void playPauseButton.offsetWidth; // Trigger reflow
+          playPauseButton.classList.add('fade-out'); // Add the fade-out class again
         } else {
           selectedPlane.material.map.image.pause();
+          playPauseButton.style.backgroundImage = "url('/public/img/pause_button.svg')"; // Change button to play icon
+          playPauseButton.style.display = 'block'; // Show the button
+          playPauseButton.classList.remove('fade-out'); // Remove the fade-out class
+          void playPauseButton.offsetWidth; // Trigger reflow
+          playPauseButton.classList.add('fade-out'); // Add the fade-out class again
         }
         break;
     }
@@ -194,11 +211,9 @@ function onMouseDown(event) {
       .to({ x: 0, y: 0, z: 0 }, 1000)
       .easing(TWEEN.Easing.Exponential.InOut)
       .onComplete(function() {
-        if (selectedPlane.state === 'videoLoaded') {
-          // Start playing the video after the animation
-          selectedPlane.videoElement.muted = false;
-          selectedPlane.material.map.image.play();
-          selectedPlane.state = 'videoPlaying';
+        if (selectedPlane && selectedPlane.state === 'videoLoaded') {
+          playPauseButton.style.display = 'block'; // Show the button
+          playPauseButton.classList.add('fade-in'); // Add the fade-in class
         }
       })
       .start();
@@ -210,6 +225,7 @@ function onMouseDown(event) {
       .start();
   } else {
     // If the click was outside a plane, return to orbiting state
+    playPauseButton.style.display = 'none'; // Hide the button when no plane is selected
     if (selectedPlane) {
       selectedPlane.material.depthTest = true;
       selectedPlane.material.needsUpdate = true;  // This line is needed to apply the changes to the material
@@ -314,4 +330,5 @@ function loadSourceToVideo(plane, source) {
   var texture = new THREE.VideoTexture(video);
   plane.material.map = texture;
   plane.material.needsUpdate = true;
+  console.log("Now playing:", source); // Log the source of the video
 }
