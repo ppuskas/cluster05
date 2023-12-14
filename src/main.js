@@ -2,6 +2,11 @@ import * as THREE from 'three';
 import { GUI } from 'dat.gui';
 import * as TWEEN from '@tweenjs/tween.js';
 import Hls from 'hls.js';
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
+import { OutlinePass } from 'three/examples/jsm/postprocessing/OutlinePass.js';
+
+
 
 var scene = new THREE.Scene();
 var camera = new THREE.OrthographicCamera(window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, 1, 1000);
@@ -19,6 +24,17 @@ renderer.setClearColor(0x000000); // Set the background color to black
 document.body.appendChild(renderer.domElement);
 
 window.addEventListener('resize', onWindowResize, false);
+
+//compositing stuff
+var composer = new EffectComposer(renderer);
+var renderPass = new RenderPass(scene, camera);
+composer.addPass(renderPass);
+var outlinePass = new OutlinePass(new THREE.Vector2(window.innerWidth, window.innerHeight), scene, camera);
+
+outlinePass.edgeColor = new THREE.Color('white');
+outlinePass.edgeStrength = 3; // Adjust to your liking
+composer.addPass(outlinePass);
+
 
 function onWindowResize() {
   // Update camera aspect ratio
@@ -232,19 +248,12 @@ function onMouseMove(event) {
   var intersects = raycaster.intersectObjects(scene.children, true);
 
   if (intersects.length > 0) {
-    // If a plane was hovered over, change its material to the wireframe material
-    if (hoveredPlane) {
-      // hoveredPlane.material = new THREE.MeshBasicMaterial({color: 0x00ff00, side: THREE.DoubleSide}); // Reset the material of the previously hovered plane
-    }
+    // If a plane was hovered over, add it to the selectedObjects array
     hoveredPlane = intersects[0].object;
-    // hoveredPlane.material = wireframeMaterial; // Set the material of the hovered plane to the wireframe material
-    // console.log('Plane hovered over:', hoveredPlane); // Log the hovered plane
+    outlinePass.selectedObjects = [hoveredPlane];
   } else {
-    // If the mouse moved off a plane, change its material back
-    if (hoveredPlane) {
-      // hoveredPlane.material = new THREE.MeshBasicMaterial({color: 0x00ff00, side: THREE.DoubleSide}); // Reset the material to the original material
-    }
-    hoveredPlane = null;
+    // If the mouse moved off a plane, clear the selectedObjects array
+    outlinePass.selectedObjects = [];
   }
 }
 
@@ -267,7 +276,7 @@ function animate() {
 
   TWEEN.update(); // Add this line
 
-  renderer.render(scene, camera);
+  composer.render(scene, camera);
 }
 animate();
 function loadVideo(plane) {
