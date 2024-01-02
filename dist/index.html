@@ -53,6 +53,9 @@
             position: relative;
             overflow: hidden; /* Add this */
         }
+        .video-portrait {
+            padding-bottom: 75%; /* Adjust this to match the aspect ratio of your video */
+        }
         .video video {
             position: absolute;
             top: 0;
@@ -62,7 +65,10 @@
             object-fit: cover;
         }
         #youtube,
-        #youtube-grid {
+        #youtube-grid,
+        #youtube-grid-2,
+        #youtube-grid-3,
+        #youtube-grid-4 {
             position: absolute;
             top: 0;
             left: 0;
@@ -85,6 +91,24 @@
                 <source src="/public/videos/loops/loop_awui_landscape_sm_2.mp4" type="video/mp4">
             </video>
             <iframe id="youtube-grid" width="560" height="315" src="https://www.youtube.com/embed/5SbCvqACI5I?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display: none;"></iframe>
+        </div>
+        <div class="video">
+            <video id="thumbnail-grid-2" loop muted autoplay>
+                <source src="/public/videos/loops/loop_rainy_landscape_1.mp4" type="video/mp4">
+            </video>
+            <iframe id="youtube-grid-2" width="560" height="315" src="https://www.youtube.com/embed/UjgaQW8lq44?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display: none;"></iframe>
+        </div>
+        <div class="video">
+            <video id="thumbnail-grid-3" loop muted autoplay>
+                <source src="/public/videos/loops/dadasong_loop_1.mp4" type="video/mp4">
+            </video>
+            <iframe id="youtube-grid-3" width="560" height="315" src="https://www.youtube.com/embed/xarNGh8_Ejo?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display: none;"></iframe>
+        </div>
+        <div class="video video-portrait">
+            <video id="thumbnail-grid-4" loop muted autoplay>
+                <source src="/public/videos/loops/mortybot_loop.mp4" type="video/mp4">
+            </video>
+            <iframe id="youtube-grid-4" width="560" height="315" src="https://www.youtube.com/embed/68sGaJM6yls?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display: none;"></iframe>
         </div>
         <!-- Repeat for each video -->
     </div>
@@ -121,6 +145,27 @@
         thumbnailGrid.addEventListener('mouseover', function() {
             thumbnailGrid.style.display = 'none';
             youtubeGrid.style.display = 'block';
+        });
+
+        var thumbnailGrid2 = document.getElementById('thumbnail-grid-2');
+        var youtubeGrid2 = document.getElementById('youtube-grid-2');
+        thumbnailGrid2.addEventListener('mouseover', function() {
+            thumbnailGrid2.style.display = 'none';
+            youtubeGrid2.style.display = 'block';
+        });
+
+        var thumbnailGrid3 = document.getElementById('thumbnail-grid-3');
+        var youtubeGrid3 = document.getElementById('youtube-grid-3');
+        thumbnailGrid3.addEventListener('mouseover', function() {
+            thumbnailGrid3.style.display = 'none';
+            youtubeGrid3.style.display = 'block';
+        });
+
+        var thumbnailGrid4 = document.getElementById('thumbnail-grid-4');
+        var youtubeGrid4 = document.getElementById('youtube-grid-4');
+        thumbnailGrid4.addEventListener('mouseover', function() {
+            thumbnailGrid4.style.display = 'none';
+            youtubeGrid4.style.display = 'block';
         });
     </script>
 </body>
