@@ -16,10 +16,24 @@
             width: 90%;
             height: 50vh;
             margin: 2em 0;
-            background: #ccc;
+            background: white;
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
+            overflow: hidden; /* Add this */
+        }
+        .video-reel iframe,
+        .video-reel video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .video-reel iframe {
+            display: none;
         }
         .video-grid {
             width: 90%;
@@ -34,29 +48,80 @@
             align-items: center;
             padding: 1em;
             box-sizing: border-box;
-            height: 200px;
+            height: 0;
+            padding-bottom: 56.25%;
+            position: relative;
+            overflow: hidden; /* Add this */
+        }
+        .video video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        #youtube,
+        #youtube-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
 <body>
     <div class="video-reel">
-        <p>Main Video Reel Placeholder</p>
+        <video id="thumbnail" loop muted autoplay>
+            <source src="/public/videos/loops/2024_reel_loop.mp4" type="video/mp4">
+        </video>
+        <div id="youtube"></div>
     </div>
 
     <div class="video-grid">
         <div class="video">
-            <p>Video Placeholder</p>
-        </div>
-        <div class="video">
-            <p>Video Placeholder</p>
-        </div>
-        <div class="video">
-            <p>Video Placeholder</p>
-        </div>
-        <div class="video">
-            <p>Video Placeholder</p>
+            <video id="thumbnail-grid" loop muted autoplay>
+                <source src="/public/videos/loops/loop_awui_landscape_sm_2.mp4" type="video/mp4">
+            </video>
+            <iframe id="youtube-grid" width="560" height="315" src="https://www.youtube.com/embed/5SbCvqACI5I?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display: none;"></iframe>
         </div>
         <!-- Repeat for each video -->
     </div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        var player;
+        var playerGrid;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube', {
+                height: '315',
+                width: '560',
+                videoId: '5lQW_LV1FVo',
+                events: {
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        var thumbnail = document.getElementById('thumbnail');
+        thumbnail.addEventListener('mouseover', function() {
+            thumbnail.style.display = 'none';
+            player.getIframe().style.display = 'block';
+        });
+
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.PLAYING && event.target == player.getIframe()) {
+                thumbnail.style.display = 'none';
+            }
+        }
+
+        var thumbnailGrid = document.getElementById('thumbnail-grid');
+        var youtubeGrid = document.getElementById('youtube-grid');
+        thumbnailGrid.addEventListener('mouseover', function() {
+            thumbnailGrid.style.display = 'none';
+            youtubeGrid.style.display = 'block';
+        });
+    </script>
 </body>
 </html>
