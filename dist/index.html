@@ -8,9 +8,9 @@
         body {
             margin: 0;
             padding: 0;
-            display: flex;
+            /* display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: center; */
             
         }
         header {
@@ -21,7 +21,7 @@
             gap: 2em;
         }
         .video-reel {
-            width: 90%;
+            width: 100%;
             height: 50vh;
             margin: 2em 0;
             background: white;
@@ -45,7 +45,7 @@
             display: none;
         }
         .video-grid {
-            width: 90%;
+            width: 100%;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 20px;
@@ -60,7 +60,6 @@
             height: 0;
             padding-bottom: 56.25%;
             position: relative;
-            overflow: hidden; /* Add this */
             border-radius: 15px;
         }
         .video video {
@@ -70,6 +69,10 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+        .container {
+          max-width: 800px; /* Adjust as needed */
+          margin: 0 auto; /* Center the container */
         }
        
         
@@ -116,25 +119,37 @@
             width: 100%; /* Full width */
             height: 100%; /* Full height */
             overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(255,255,255,0.8); /* Slightly transparent white */
+            background-color: rgba(255,255,255,1.0); /* Slightly transparent white */
+            
         }
 
         /* Modal Content */
         .modal-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            max-width: 800px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 80%; /* Adjust as needed */
+          height: 80%; /* Adjust as needed */
+          
         }
-        /* The YouTube Video */
-        #youtube-modal {
+        
+        /* The Vimeo Video */
+        #vimeo-modal {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
         }
         
         
@@ -146,12 +161,14 @@
         <a href="mailto:ppuskas@gmail.com">ppuskas@gmail.com</a>
     </header>
 
+    <div class="container">
+
     <div class="video-reel">
         <video id="thumbnail" loop muted autoplay playsinline>
             <source src="/public/videos/loops/2024_reel_loop.mp4" type="video/mp4">
         </video>
-        <div class="play-button" data-youtube-id="5lQW_LV1FVo" data-aspect-ratio="1.77"></div>
-        <div id="youtube"></div>
+        <div class="play-button" data-vimeo-id="899557725" data-aspect-ratio="1.77"></div>
+        <div id="vimeo"></div>
     </div>
 
     <div class="video-grid">
@@ -159,130 +176,82 @@
             <video id="thumbnail-grid" loop muted autoplay playsinline>
                 <source src="/public/videos/loops/loop_awui_landscape_sm_2.mp4" type="video/mp4">
             </video>
-            <div class="play-button" data-youtube-id="5SbCvqACI5I" data-aspect-ratio="1.77"></div>
+            <div class="play-button" data-vimeo-id="856648267" data-aspect-ratio="1.77"></div>
         </div>
         <div class="video">
             <video id="thumbnail-grid-2" loop muted autoplay playsinline>
                 <source src="/public/videos/loops/loop_rainy_landscape_1.mp4" type="video/mp4">
             </video>
-            <div class="play-button" data-youtube-id="UjgaQW8lq44" data-aspect-ratio="1.77"></div>
+            <div class="play-button" data-vimeo-id="899111808" data-aspect-ratio="1.77"></div>
         </div>
         <div class="video">
             <video id="thumbnail-grid-3" loop muted autoplay playsinline>
                 <source src="/public/videos/loops/dadasong_loop_1.mp4" type="video/mp4">
             </video>
-            <div class="play-button" data-youtube-id="xarNGh8_Ejo" data-aspect-ratio="1.77"></div>
+            <div class="play-button" data-vimeo-id="766164646" data-aspect-ratio="1.77"></div>
         </div>
         <div class="video">
-            <video id="thumbnail-grid-4" loop muted autoplay playsinline>
-                <source src="/public/videos/loops/mortybot_loop.mp4" type="video/mp4">
-            </video>
-            <div class="play-button" data-youtube-id="68sGaJM6yls" data-aspect-ratio="0.56"></div>
-        </div>
+          <video id="thumbnail-grid-4" loop muted autoplay playsinline>
+              <source src="/public/videos/loops/mortybot_loop.mp4" type="video/mp4">
+          </video>
+          <div class="play-button" data-vimeo-id="899557133" data-aspect-ratio="0.56"></div>
+      </div>
         <!-- Repeat for each video -->
     </div>
 
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-      <!-- The Close Button -->
-      <span class="close">&times;</span>
-      <!-- Modal Content (The YouTube Video) -->
-      <div class="modal-content">
-        <iframe id="youtube-modal" width="560" height="315" src="https://www.youtube.com/embed/5lQW_LV1FVo?modestbranding=1&showinfo=0&rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
     </div>
 
-    <script src="https://www.youtube.com/iframe_api"></script>
+
+    <!-- The Modal -->
+    <!-- The Modal -->
+<div id="myModal" class="modal">
+  <!-- The Close Button -->
+  <img class="close" src="/public/img/close.svg" alt="Close">
+  <!-- Modal Content (The Vimeo Video) -->
+  <div class="modal-content">
+      
+      <iframe id="vimeo-modal" width="560" height="315" src="" title="Vimeo video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
+
+   
     <script>
-        var player;
-        var playerGrid;
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('youtube', {
-                height: '315',
-                width: '560',
-                videoId: '5lQW_LV1FVo',
-                events: {
-                    'onStateChange': onPlayerStateChange
-                }
-            });
-        }
+      // Get the modal
+var modal = document.getElementById("myModal");
 
-        function onPlayerStateChange(event) {
-            if (event.data == YT.PlayerState.PLAYING && event.target == player.getIframe()) {
-                thumbnail.style.display = 'none';
-            }
-        }
+// Get the play buttons that open the modal
+var playButtons = document.querySelectorAll(".play-button");
 
-        // Get the modal
-        var modal = document.getElementById("myModal");
 
-        // Get the modal content
-        var modalContent = document.querySelector(".modal-content");
+// When the user clicks a play button, open the modal 
+playButtons.forEach(function(button) {
+    button.onclick = function() {
+        console.log('Play button clicked');
+        console.log('Vimeo ID: ' + this.dataset.vimeoId);
+        modal.style.display = "block";
+        document.getElementById('vimeo-modal').src = "https://player.vimeo.com/video/" + this.dataset.vimeoId  + "?title=0&byline=0";
+        console.log('Modal src: ' + document.getElementById('vimeo-modal').src);
+    }
+});
 
-        // Get the play buttons that open the modal
-        var playButtons = document.querySelectorAll(".play-button");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
 
-        // Get the play button in the reel
-        var reelPlayButton = document.querySelector(".video-reel .play-button");
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+    document.getElementById('vimeo-modal').src = "";
+}
 
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-
-        // When the user clicks a play button, open the modal 
-        playButtons.forEach(function(button) {
-            button.onclick = function() {
-                // Get the video's aspect ratio
-                var videoAspectRatio = this.dataset.aspectRatio;
-
-                // Adjust the size of the modal based on the video's aspect ratio
-                if (videoAspectRatio > 1) {
-                    // The video is landscape
-                    modalContent.style.width = "80%";
-                    modalContent.style.height = "45%";
-                } else {
-                    // The video is portrait
-                    modalContent.style.width = "45%";
-                    modalContent.style.height = "80%";
-                }
-
-                modal.style.display = "block";
-                document.getElementById('youtube-modal').src = "https://www.youtube.com/embed/" + this.dataset.youtubeId + "?modestbranding=1&showinfo=0&rel=0";
-            }
-        });
-
-        // When the user clicks the play button in the reel, open the modal 
-        reelPlayButton.onclick = function() {
-            // Get the video's aspect ratio
-            var videoAspectRatio = this.dataset.aspectRatio;
-
-            // Adjust the size of the modal based on the video's aspect ratio
-            if (videoAspectRatio > 1) {
-                // The video is landscape
-                modalContent.style.width = "80%";
-                modalContent.style.height = "45%";
-            } else {
-                // The video is portrait
-                modalContent.style.width = "45%";
-                modalContent.style.height = "80%";
-            }
-
-            modal.style.display = "block";
-            document.getElementById('youtube-modal').src = "https://www.youtube.com/embed/" + this.dataset.youtubeId + "?modestbranding=1&showinfo=0&rel=0";
-        }
-
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
-            modal.style.display = "none";
-            document.getElementById('youtube-modal').src = "";
-        }
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-                document.getElementById('youtube-modal').src = "";
-            }
-        }
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+        document.getElementById('vimeo-modal').src = "";
+    }
+}
     </script>
 </body>
+
 </html>
+
