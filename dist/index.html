@@ -151,6 +151,9 @@
             height: 30px;
             cursor: pointer;
         }
+        #modal-info {
+            /* Styles for the information */
+        }
         
         
     </style>
@@ -167,7 +170,7 @@
         <video id="thumbnail" loop muted autoplay playsinline>
             <source src="/public/videos/loops/2024_reel_loop.mp4" type="video/mp4">
         </video>
-        <div class="play-button" data-vimeo-id="899557725" data-aspect-ratio="1.77"></div>
+        <div class="play-button" data-vimeo-id="899557725" data-aspect-ratio="1.77" data-info="Overview of work over the passed year."></div>
         <div id="vimeo"></div>
     </div>
 
@@ -196,6 +199,18 @@
           </video>
           <div class="play-button" data-vimeo-id="899557133" data-aspect-ratio="0.56"></div>
       </div>
+        <div class="video">
+          <video id="thumbnail-grid-5" loop muted autoplay playsinline>
+              <source src="/public/videos/loops/horsemorph_loop.mp4" type="video/mp4">
+          </video>
+          <div class="play-button" data-vimeo-id="899610133" data-aspect-ratio="1.77"></div>
+      </div>
+      <div class="video">
+        <video id="thumbnail-grid-6" loop muted autoplay playsinline>
+            <source src="/public/videos/loops/big-strong-boy_loop.mp4" type="video/mp4">
+        </video>
+        <div class="play-button" data-vimeo-id="899615778" data-aspect-ratio="1.77"></div>
+    </div>
         <!-- Repeat for each video -->
     </div>
 
@@ -211,6 +226,7 @@
   <div class="modal-content">
       
       <iframe id="vimeo-modal" width="560" height="315" src="" title="Vimeo video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <div id="modal-info"></div>
   </div>
 </div>
 
@@ -231,6 +247,7 @@ playButtons.forEach(function(button) {
         modal.style.display = "block";
         document.getElementById('vimeo-modal').src = "https://player.vimeo.com/video/" + this.dataset.vimeoId  + "?title=0&byline=0";
         console.log('Modal src: ' + document.getElementById('vimeo-modal').src);
+        document.getElementById('modal-info').textContent = this.dataset.info;
     }
 });
 
