@@ -17,8 +17,8 @@
             display: flex;
             justify-content: flex-start;
             align-items: center;
-            padding: 1em;
-            gap: 2em;
+            padding-top: 1em;
+            gap: 0.5em;
         }
         .video-reel {
             width: 100%;
@@ -154,17 +154,34 @@
         #modal-info {
             /* Styles for the information */
         }
+        header a {
+            display: inline-block;
+            padding: 10px 20px; /* Adjust as needed */
+            border: 1px solid #000; /* Adjust as needed */
+            border-radius: 50px; /* High value to create pill shape */
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+header a:hover {
+    background-color: #f2f2f2; /* Adjust as needed */
+}
         
         
     </style>
 </head>
 <body>
-    <header>
-        <a href="https://www.instagram.com/petepuskas/" style="text-decoration: none; color: inherit;">pete puskas</a>
-        <a href="mailto:ppuskas@gmail.com">ppuskas@gmail.com</a>
-    </header>
+    
 
     <div class="container">
+      <header>
+        <a href="">pete puskas</a>
+        <a href="">previz</a>
+        <a href="">AR</a>
+        <a href="">nu media</a>
+        <a href="">about</a>
+        <a href="">contact</a>
+    </header>
 
     <div class="video-reel">
         <video id="thumbnail" loop muted autoplay playsinline>
