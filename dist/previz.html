@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previz</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <style>
+        .description, .media {
+            padding: 20px;
+        }
+
+        @media (min-width: 600px) { /* Adjust as needed */
+            section {
+                display: flex;
+                justify-content: space-between;
+            }
+            .description, .media {
+                width: 45%; /* Adjust as needed */
+            }
+        }
+
+        @media (max-width: 599px) { /* Adjust as needed */
+            section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .description, .media {
+                width: 100%; /* Adjust as needed */
+            }
+        }
+        
+        header {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding-top: 1em;
+            gap: 0.5em;
+        }
+        header a {
+            display: inline-block;
+            padding: 10px 20px; /* Adjust as needed */
+            border: 1px solid #000; /* Adjust as needed */
+            border-radius: 50px; /* High value to create pill shape */
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        
+        .container {
+            max-width: 800px; /* Adjust as needed */
+            margin: 0 auto; /* Center the container */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html">pete puskas</a>
+            <a href="">previz</a>
+            <a href="">AR</a>
+            <a href="">nu media</a>
+            <a href="">about</a>
+            <a href="">contact</a>
+        </header>
+    <section id="project1">
+        <div class="description">
+            <!-- Description/information goes here -->
+            <h1>Logitech – Together We Create</h1>
+            <p>Previz for Logitech – Together We Create spot</p>
+        </div>
+        <div class="media">
+            <!-- Vimeo clips and stills go here -->
+            <p>Previz:</p>
+            <iframe src="https://player.vimeo.com/video/899921208" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+            <p>Final Cut:</p>
+            <iframe src="https://player.vimeo.com/video/652207898" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+            <!-- 
+                <img src="path-to-image1.jpg" alt="Image 1">
+                <img src="path-to-image2.jpg" alt="Image 2"> 
+            -->
+        </div>
+    </section>
+
+    <!-- Repeat for each project -->
+
+    <script>
+        // Your JavaScript code goes here
+    </script>
+</div>
+</body>
+</html>

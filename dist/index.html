@@ -162,10 +162,13 @@
             text-decoration: none;
             transition: background-color 0.3s ease;
         }
+        .shifted-video {
+            object-position: center -100px;
+        }
 
-header a:hover {
-    background-color: #f2f2f2; /* Adjust as needed */
-}
+        header a:hover {
+            background-color: #f2f2f2; /* Adjust as needed */
+        }
         
         
     </style>
@@ -174,62 +177,83 @@ header a:hover {
     
 
     <div class="container">
-      <header>
-        <a href="">pete puskas</a>
-        <a href="">previz</a>
-        <a href="">AR</a>
-        <a href="">nu media</a>
-        <a href="">about</a>
-        <a href="">contact</a>
-    </header>
+          <header>
+            <a href="">pete puskas</a>
+            <a href="previz.html">previz</a>
+            <a href="">AR</a>
+            <a href="">nu media</a>
+            <a href="">about</a>
+            <a href="">contact</a>
+          </header>
 
-    <div class="video-reel">
-        <video id="thumbnail" loop muted autoplay playsinline>
-            <source src="/public/videos/loops/2024_reel_loop.mp4" type="video/mp4">
-        </video>
-        <div class="play-button" data-vimeo-id="899557725" data-aspect-ratio="1.77" data-info="Overview of work over the passed year."></div>
-        <div id="vimeo"></div>
-    </div>
+        <div class="video-reel">
+            <video id="thumbnail" loop muted autoplay playsinline>
+                <source src="/public/videos/loops/2024_reel_loop.mp4" type="video/mp4">
+            </video>
+            <div class="play-button" data-vimeo-id="899557725" data-aspect-ratio="1.77" data-info="Overview of work over the passed year."></div>
+            <div id="vimeo"></div>
+        </div>
 
-    <div class="video-grid">
-        <div class="video">
-            <video id="thumbnail-grid" loop muted autoplay playsinline>
-                <source src="/public/videos/loops/loop_awui_landscape_sm_2.mp4" type="video/mp4">
+        <div class="video-grid">
+            <div class="video">
+                <video id="thumbnail-grid" loop muted autoplay playsinline>
+                    <source src="/public/videos/loops/loop_awui_landscape_sm_2.mp4" type="video/mp4">
+                </video>
+                <div class="play-button" data-vimeo-id="856648267" data-aspect-ratio="1.77"></div>
+            </div>
+            <div class="video">
+                <video id="thumbnail-grid-2" loop muted autoplay playsinline>
+                    <source src="/public/videos/loops/loop_rainy_landscape_1.mp4" type="video/mp4">
+                </video>
+                <div class="play-button" data-vimeo-id="899111808" data-aspect-ratio="1.77"></div>
+            </div>
+            <div class="video">
+                <video id="thumbnail-grid-3" loop muted autoplay playsinline>
+                    <source src="/public/videos/loops/dadasong_loop_1.mp4" type="video/mp4">
+                </video>
+                <div class="play-button" data-vimeo-id="766164646" data-aspect-ratio="1.77"></div>
+            </div>
+            <div class="video">
+              <video id="thumbnail-grid-4" class="shifted-video" loop muted autoplay playsinline>
+                  <source src="/public/videos/loops/mortybot_loop.mp4" type="video/mp4">
+              </video>
+              <div class="play-button" data-vimeo-id="899557133" data-aspect-ratio="0.56"></div>
+            </div>
+            <div class="video">
+              <video id="thumbnail-grid-5" class="shifted-video" loop muted autoplay playsinline>
+                  <source src="/public/videos/loops/horsemorph_loop.mp4" type="video/mp4">
+              </video>
+              <div class="play-button" data-vimeo-id="899610133" data-aspect-ratio="1.77"></div>
+            </div>
+          <div class="video">
+            <video id="thumbnail-grid-6" loop muted autoplay playsinline>
+                <source src="/public/videos/loops/big-strong-boy_loop.mp4" type="video/mp4">
             </video>
-            <div class="play-button" data-vimeo-id="856648267" data-aspect-ratio="1.77"></div>
-        </div>
-        <div class="video">
-            <video id="thumbnail-grid-2" loop muted autoplay playsinline>
-                <source src="/public/videos/loops/loop_rainy_landscape_1.mp4" type="video/mp4">
+            <div class="play-button" data-vimeo-id="899615778" data-aspect-ratio="1.77"></div>
+          </div>
+          <div class="video">
+            <video id="thumbnail-grid-7" loop muted autoplay playsinline>
+                <source src="/public/videos/loops/scanner_loop.mp4" type="video/mp4">
             </video>
-            <div class="play-button" data-vimeo-id="899111808" data-aspect-ratio="1.77"></div>
-        </div>
-        <div class="video">
-            <video id="thumbnail-grid-3" loop muted autoplay playsinline>
-                <source src="/public/videos/loops/dadasong_loop_1.mp4" type="video/mp4">
+            <div class="play-button" data-vimeo-id="899910942" data-aspect-ratio="1.77"></div>
+          </div>
+          <div class="video">
+            <video id="thumbnail-grid-8" class="shifted-video" loop muted autoplay playsinline>
+                <source src="/public/videos/loops/tst_loop.mp4" type="video/mp4">
             </video>
-            <div class="play-button" data-vimeo-id="766164646" data-aspect-ratio="1.77"></div>
+            <div class="play-button" data-vimeo-id="899915318" data-aspect-ratio="1.77"></div>
+          </div>
+          <div class="video">
+            <video id="thumbnail-grid-9"  loop muted autoplay playsinline>
+                <source src="/public/videos/loops/logitech_loop.mp4" type="video/mp4">
+            </video>
+            <div class="play-button" data-url="previz.html#project1" data-aspect-ratio="1.77"></div>
+          </div>
+
+
+          
+            <!-- Repeat for each video -->
         </div>
-        <div class="video">
-          <video id="thumbnail-grid-4" loop muted autoplay playsinline>
-              <source src="/public/videos/loops/mortybot_loop.mp4" type="video/mp4">
-          </video>
-          <div class="play-button" data-vimeo-id="899557133" data-aspect-ratio="0.56"></div>
-      </div>
-        <div class="video">
-          <video id="thumbnail-grid-5" loop muted autoplay playsinline>
-              <source src="/public/videos/loops/horsemorph_loop.mp4" type="video/mp4">
-          </video>
-          <div class="play-button" data-vimeo-id="899610133" data-aspect-ratio="1.77"></div>
-      </div>
-      <div class="video">
-        <video id="thumbnail-grid-6" loop muted autoplay playsinline>
-            <source src="/public/videos/loops/big-strong-boy_loop.mp4" type="video/mp4">
-        </video>
-        <div class="play-button" data-vimeo-id="899615778" data-aspect-ratio="1.77"></div>
-    </div>
-        <!-- Repeat for each video -->
-    </div>
 
     </div>
 
@@ -259,12 +283,17 @@ var playButtons = document.querySelectorAll(".play-button");
 // When the user clicks a play button, open the modal 
 playButtons.forEach(function(button) {
     button.onclick = function() {
-        console.log('Play button clicked');
-        console.log('Vimeo ID: ' + this.dataset.vimeoId);
-        modal.style.display = "block";
-        document.getElementById('vimeo-modal').src = "https://player.vimeo.com/video/" + this.dataset.vimeoId  + "?title=0&byline=0";
-        console.log('Modal src: ' + document.getElementById('vimeo-modal').src);
-        document.getElementById('modal-info').textContent = this.dataset.info;
+      var url = this.dataset.url;
+        if (url) {
+            window.location.href = url;
+        } else {
+            console.log('Play button clicked');
+            console.log('Vimeo ID: ' + this.dataset.vimeoId);
+            modal.style.display = "block";
+            document.getElementById('vimeo-modal').src = "https://player.vimeo.com/video/" + this.dataset.vimeoId  + "?title=0&byline=0";
+            console.log('Modal src: ' + document.getElementById('vimeo-modal').src);
+            document.getElementById('modal-info').textContent = this.dataset.info;
+        }
     }
 });
 
@@ -288,4 +317,5 @@ window.onclick = function(event) {
 </body>
 
 </html>
+
 
